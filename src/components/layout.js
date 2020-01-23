@@ -12,8 +12,10 @@ import style, { createGlobalStyle } from 'styled-components'
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-  body {
+  body, html {
     font-family: 'Open Sans', sans-serif;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 `
 const LayoutWrapper = style.div`
