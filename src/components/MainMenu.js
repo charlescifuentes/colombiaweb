@@ -1,10 +1,19 @@
 import React from 'react'
 import { graphql, StaticQuery, Link } from 'gatsby'
 import style from 'styled-components'
+import Siteinfo from './Siteinfo'
 
 const MainMenuWrapper = style.div`
   display: flex;
   background-color: rgb(3,27,77);
+`
+
+const MainMenuInner = style.div`
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  width: 960px;
+  height: 100%;
 `
 
 const MenuItem = style(Link)`
@@ -34,11 +43,14 @@ const MainMenu = () => (
       }
     `} render={props => (
         <MainMenuWrapper>
-            {props.allWordpressMenusMenusItems.edges[0].node.items.map(item => (
-                <MenuItem to={item.slug} key={item.title}>
-                    {item.title}
-                </MenuItem>
-            ))}
+          <MainMenuInner>
+            <Siteinfo />
+              {props.allWordpressMenusMenusItems.edges[0].node.items.map(item => (
+                  <MenuItem to={item.slug} key={item.title}>
+                      {item.title}
+                  </MenuItem>
+              ))}
+          </MainMenuInner>
         </MainMenuWrapper>
     )} />
 )
