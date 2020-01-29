@@ -2,9 +2,18 @@ import React from 'react'
 import { graphql, StaticQuery, Link } from 'gatsby'
 import styled from 'styled-components'
 
-const FeaturedImage = styled.img`
-  max-width: 500px;
-  margin: 16px 0px;
+const PortfolioItemsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
+const PortfolioItem = styled.div`
+  width: 300px;
+  border: 1px solid #efefef;
+  padding: 16px;
+  margin: 16px;
+`
+const PortfolioImage = styled.img`
+  max-width: 100%;
 `
 
 const PortfolioItems = () => {
@@ -25,14 +34,17 @@ const PortfolioItems = () => {
               }
             }
           }
-        `} render={props => props.allWordpressWpPortfolio.edges.map(portfolioitem => (
-            <div key={portfolioitem.node.id} >
+        `} render={props => (
+          <PortfolioItemsWrapper>
+          {props.allWordpressWpPortfolio.edges.map(portfolioitem => (
+            <PortfolioItem key={portfolioitem.node.id} >
                 <h2>{portfolioitem.node.title}</h2>
-                <FeaturedImage src={portfolioitem.node.featured_media.source_url} alt="Thumbnail" />
+                <PortfolioImage src={portfolioitem.node.featured_media.source_url} alt="Thumbnail" />
                 <div dangerouslySetInnerHTML={{__html: portfolioitem.node.excerpt}} />
                 <Link to={`/portfolio/${portfolioitem.node.slug}`}>Read More</Link>
-            </div>
-        )) } />
+            </PortfolioItem>
+        ))}
+        </PortfolioItemsWrapper> )} />
     )
 }
 
