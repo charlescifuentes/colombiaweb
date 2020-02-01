@@ -74,13 +74,16 @@ exports.createPages = ({ graphql, actions }) => {
           `
             {
               allWordpressPost {
-                edges{
-                  node{
-                    id
+                edges {
+                  node {
                     title
+                    content
+                    featured_media {
+                      source_url
+                    }
                     slug
                     excerpt
-                    content
+                    date
                   }
                 }
               }
@@ -92,20 +95,21 @@ exports.createPages = ({ graphql, actions }) => {
             reject(result.errors)
           }
           
-          const postTemplate = path.resolve("./src/templates/post.js")
-          // We want to create a detailed page for each
-          // post node. We'll just use the WordPress Slug for the slug.
-          // The Post ID is prefixed with 'POST_'
-          _.each(result.data.allWordpressPost.edges, edge => {
+          const posts = result.data.allWordpressPost.edges
+          const postPerPage = 2
+          const numberOfPages = Math.ceil(posts.length / postPerPage)
+
+          Array.from({length: numberOfPages}).forEach((page, index) => {
             createPage({
-              path: `/post/${edge.node.slug}/`,
-              component: slash(postTemplate),
-              context: edge.node,
+              path: index === 0 ? '/blog' : `/blog/${index + 1}`,
+              context: {
+                posts: posts.slice(index * postPerPage, (index * postPerPage) + postPerPage),
+                numberOfPages,
+                currentPage: index + 1 
+              }
             })
           })
-          resolve()
         })
-      })
     // ==== END POSTS ====
 
     // ==== PORTFOLIO (WORDPRESS NATIVE) ====
@@ -122,6 +126,9 @@ exports.createPages = ({ graphql, actions }) => {
                     content
                     featured_media {
                       source_url
+                    }
+                    acf {
+                      portfolio_url
                     }
                   }
                 }

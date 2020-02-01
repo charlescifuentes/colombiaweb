@@ -37,7 +37,7 @@ const PortfolioItems = () => {
         `} render={props => (
           <PortfolioItemsWrapper>
           {props.allWordpressWpPortfolio.edges.map(portfolioitem => (
-            <PortfolioItem key={portfolioitem.node.id} >
+            <PortfolioItem key={portfolioitem.node.title} >
                 <h2>{portfolioitem.node.title}</h2>
                 <PortfolioImage src={portfolioitem.node.featured_media.source_url} alt="Thumbnail" />
                 <div dangerouslySetInnerHTML={{__html: portfolioitem.node.excerpt}} />

@@ -48,7 +48,7 @@ const MainMenu = () => (
             <Logo />
             <Siteinfo />
               {props.allWordpressMenusMenusItems.edges[0].node.items.map(item => (
-                  <MenuItem to={item.slug} key={item.title}>
+                  <MenuItem to={`/${item.slug}`} key={item.title}>
                       {item.title}
                   </MenuItem>
               ))}
