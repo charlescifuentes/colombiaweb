@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
-import { Link } from 'gatsby'
+import { Link as NumberLink } from 'gatsby'
+import { Link as ButtonLink } from 'gatsby'
 import styled from 'styled-components'
 
 const Pagination = styled.div`
@@ -14,6 +15,13 @@ const BlogWrapper = styled.div`
 
 const BlogItem = styled.div`
     width: 450px;
+    padding: 16px;
+    margin: 16px;
+    border-style: outset;          
+`
+
+const BLink = styled(ButtonLink)`
+    text-decoration: none;
 `
 
 const PageNumberWrapper = styled.div`
@@ -21,7 +29,7 @@ const PageNumberWrapper = styled.div`
     background: ${props => props.isCurrentPage ? '#eee' : 'white'}
 `
 
-const PageNumber = styled(Link)`
+const PageNumber = styled(NumberLink)`
     display: block;
     padding: 8px 16px;
 `
@@ -40,9 +48,9 @@ export default ({ pageContext }) => (
                 <small>{post.node.date} </small>
                 <p dangerouslySetInnerHTML={{__html: post.node.excerpt}} />
                 <div>
-                    <Link to={`/post/${post.node.slug}`}>
+                    <button><BLink to={`/post/${post.node.slug}`}>
                         Read more
-                    </Link>
+                    </BLink></button>
                 </div>
             </BlogItem>
         ))}
