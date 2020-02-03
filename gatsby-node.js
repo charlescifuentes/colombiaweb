@@ -83,7 +83,8 @@ exports.createPages = ({ graphql, actions }) => {
                     }
                     slug
                     excerpt
-                    date
+                    date(formatString: "Do MMM YYYY HH:mm")
+                    wordpress_id
                   }
                 }
               }
@@ -98,9 +99,11 @@ exports.createPages = ({ graphql, actions }) => {
           const posts = result.data.allWordpressPost.edges
           const postPerPage = 2
           const numberOfPages = Math.ceil(posts.length / postPerPage)
+          const blogPostListTemplate = path.resolve('./src/templates/blogPostList.js')
 
           Array.from({length: numberOfPages}).forEach((page, index) => {
             createPage({
+              component: slash(blogPostListTemplate),
               path: index === 0 ? '/blog' : `/blog/${index + 1}`,
               context: {
                 posts: posts.slice(index * postPerPage, (index * postPerPage) + postPerPage),
@@ -110,6 +113,7 @@ exports.createPages = ({ graphql, actions }) => {
             })
           })
         })
+      })
     // ==== END POSTS ====
 
     // ==== PORTFOLIO (WORDPRESS NATIVE) ====
