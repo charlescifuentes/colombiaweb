@@ -3,7 +3,7 @@ import Layout from '../components/layout'
 import styled from 'styled-components'
 
 const FeaturedImage = styled.img`
-  max-width: 500px;
+  max-width: 100%;
 `
 
 export default ({pageContext}) => (
@@ -11,6 +11,5 @@ export default ({pageContext}) => (
     <h1>{pageContext.title}</h1>
     <FeaturedImage src={pageContext.featured_media.source_url} />
     <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
-
   </Layout>
 )

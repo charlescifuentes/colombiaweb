@@ -8,6 +8,14 @@ const Pagination = styled.div`
     justify-content: flex-end;
 `
 
+const BlogWrapper = styled.div`
+    display: flex;
+`
+
+const BlogItem = styled.div`
+    width: 450px;
+`
+
 const PageNumberWrapper = styled.div`
     border: 1px solid #eee;
     background: ${props => props.isCurrentPage ? '#eee' : 'white'}
@@ -24,19 +32,21 @@ const FeaturedImage = styled.img`
 
 export default ({ pageContext }) => (
     <Layout>
+        <BlogWrapper>
         {pageContext.posts.map(post => (
-            <div key={post.node.wordpress_id}>
+            <BlogItem key={post.node.wordpress_id}>
                 <h3 dangerouslySetInnerHTML={{__html: post.node.title}} />
                 <FeaturedImage src={post.node.featured_media.source_url} />
                 <small>{post.node.date} </small>
                 <p dangerouslySetInnerHTML={{__html: post.node.excerpt}} />
                 <div>
-                    <Link to={`/${post.node.slug}`}>
+                    <Link to={`/post/${post.node.slug}`}>
                         Read more
                     </Link>
                 </div>
-            </div>
+            </BlogItem>
         ))}
+        </BlogWrapper>
         <Pagination>
             {Array.from({length: pageContext.numberOfPages}).map((page, index) => (
                 <div key={index}>
