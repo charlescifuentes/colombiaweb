@@ -3,25 +3,20 @@ import Layout from '../components/layout'
 import { Link as NumberLink } from 'gatsby'
 import { Link as ButtonLink } from 'gatsby'
 import styled from 'styled-components'
+import { Button, Card, CardDeck } from 'react-bootstrap'
 
 const Pagination = styled.div`
     display: flex;
     justify-content: flex-end;
 `
-
-const BlogWrapper = styled.div`
-    display: flex;
-`
-
-const BlogItem = styled.div`
-    width: 450px;
-    padding: 16px;
-    margin: 16px;
-    border-style: outset;          
-`
-
 const BLink = styled(ButtonLink)`
     text-decoration: none;
+    color: white;
+    
+    &:hover ${BLink} {
+        color: red;
+        text-decoration: none;
+      }
 `
 
 const PageNumberWrapper = styled.div`
@@ -35,26 +30,28 @@ const PageNumber = styled(NumberLink)`
 `
 
 const FeaturedImage = styled.img`
-    max-width: 100%;
+    max-width: 100%;        
 `
 
 export default ({ pageContext }) => (
     <Layout>
-        <BlogWrapper>
+        <CardDeck>
         {pageContext.posts.map(post => (
-            <BlogItem key={post.node.wordpress_id}>
-                <h3 dangerouslySetInnerHTML={{__html: post.node.title}} />
-                <FeaturedImage src={post.node.featured_media.source_url} />
-                <small>{post.node.date} </small>
-                <p dangerouslySetInnerHTML={{__html: post.node.excerpt}} />
-                <div>
-                    <button><BLink to={`/post/${post.node.slug}`}>
-                        Read more
-                    </BLink></button>
-                </div>
-            </BlogItem>
+            <Card key={post.node.wordpress_id}>
+                <Card.Img variant="top" src={post.node.featured_media.source_url} />
+                <Card.Body>
+                    <Card.Title dangerouslySetInnerHTML={{__html: post.node.title}} />
+                    <small>{post.node.date} </small>
+                    <Card.Text dangerouslySetInnerHTML={{__html: post.node.excerpt}} />
+                    <Button variant="primary">
+                        <BLink to={`/post/${post.node.slug}`}>
+                            Read more
+                        </BLink>
+                    </Button>
+                </Card.Body>
+            </Card>
         ))}
-        </BlogWrapper>
+        </CardDeck>
         <Pagination>
             {Array.from({length: pageContext.numberOfPages}).map((page, index) => (
                 <div key={index}>
