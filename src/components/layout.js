@@ -11,18 +11,8 @@ import style, { createGlobalStyle } from 'styled-components'
 import { Helmet } from 'react-helmet'
 import { graphql, StaticQuery } from 'gatsby' 
 
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-
-  body, html {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-`
 const LayoutWrapper = style.div`
-  max-width: 960px;
-  margin: 0 auto;
+  margin: 20px;
 `
 
 const Layout = ({ children }) => (
@@ -40,7 +30,6 @@ const Layout = ({ children }) => (
       }
     }  
     `} render={props => <Helmet><link rel="icon" href={props.allWordpressWpFavicon.edges[0].node.url.source_url} /></Helmet>} />
-        <GlobalStyles />
         <MainMenu />
         <LayoutWrapper>
           {children}
