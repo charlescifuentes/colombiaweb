@@ -30,10 +30,6 @@ const PageNumber = styled(NumberLink)`
     padding: 8px 16px;
 `
 
-const FeaturedImage = styled.img`
-    max-width: 100%;        
-`
-
 export default ({ pageContext }) => (
     <Layout>
         <Container>

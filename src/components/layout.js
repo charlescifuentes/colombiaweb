@@ -7,11 +7,11 @@
 
 import React from "react"
 import MainMenu from './MainMenu'
-import style, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
 import { graphql, StaticQuery } from 'gatsby' 
 
-const LayoutWrapper = style.div`
+const LayoutWrapper = styled.div`
   margin: 20px;
 `
 

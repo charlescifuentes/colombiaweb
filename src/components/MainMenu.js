@@ -1,22 +1,7 @@
 import React from 'react'
 import { graphql, StaticQuery, Link } from 'gatsby'
-import style from 'styled-components'
-import Siteinfo from './Siteinfo'
 import Logo from './Logo'
-import { Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
-
-const MainMenuWrapper = style.div`
-  display: flex;
-  background-color: rgb(3,27,77);
-`
-
-const MainMenuInner = style.div`
-  max-width: 960px;
-  margin: 0 auto;
-  display: flex;
-  width: 960px;
-  height: 100%;
-`
+import { Nav, Navbar } from 'react-bootstrap'
 
 const MainMenu = () => (
     <StaticQuery query={graphql`
