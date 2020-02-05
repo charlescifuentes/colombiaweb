@@ -1,16 +1,44 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
 
-body, html {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0 !important;
-    padding: 0 !important;
+html,
+body {
+    margin: 0;
+    padding-top: 50px;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+      padding-top: 90px;
+    }
+
+    .navbar-brand {
+        width: 190px;
+    }
 }
 
 .CardWrapper {
     display: flex;
 }
 
+.navbar {
+    border: 1px solid;
+    box-shadow: 2px 5px #888888; 
+}
+
 .nav-link {
-    color: white !important;
-    font-size: 20px;
+    color: #fff !important;
+    transition: 0.6s;
+}
+
+.nav-link:hover {
+    background-color: white;
+    border-radius: 10px;
+    color: #00E676 !important;
+}
+
+.active {
+	color: #00E676 !important;
 }

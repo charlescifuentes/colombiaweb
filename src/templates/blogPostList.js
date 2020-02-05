@@ -13,11 +13,6 @@ const Pagination = styled.div`
 const BLink = styled(ButtonLink)`
     text-decoration: none;
     color: white;
-    
-    &:hover ${BLink} {
-        color: red;
-        text-decoration: none;
-      }
 `
 
 const PageNumberWrapper = styled.div`
@@ -41,11 +36,7 @@ export default ({ pageContext }) => (
                         <Card.Title dangerouslySetInnerHTML={{__html: post.node.title}} />
                         <small>{post.node.date} </small>
                         <Card.Text dangerouslySetInnerHTML={{__html: post.node.excerpt}} />
-                        <Button variant="primary">
-                            <BLink to={`/post/${post.node.slug}`}>
-                                Read more
-                            </BLink>
-                        </Button>
+                        <Button variant="primary"><BLink to={`/post/${post.node.slug}`}>Read more</BLink></Button>    
                     </Card.Body>
                 </Card>
             ))}

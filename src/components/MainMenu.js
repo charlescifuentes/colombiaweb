@@ -23,13 +23,13 @@ const MainMenu = () => (
         }
       }
     `} render={props => (
-      <Navbar bg="primary" variant="dark" expand="lg">
-        <Navbar.Brand href="#home"><Logo /></Navbar.Brand>
+      <Navbar bg="primary" expand="lg" fixed="top">
+        <Navbar.Brand className="logo" href="#home"><Logo /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             {props.allWordpressMenusMenusItems.edges[0].node.items.map(item => (
-                <Link to={`/${item.slug}`} key={item.title} className="nav-link">{item.title}</Link>
+                <Link to={`/${item.slug}`} key={item.title} activeClassName="active" className="nav-link">{item.title}</Link>
             ))}
           </Nav>
         </Navbar.Collapse>

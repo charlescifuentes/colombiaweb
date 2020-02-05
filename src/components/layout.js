@@ -12,7 +12,6 @@ import { Helmet } from 'react-helmet'
 import { graphql, StaticQuery } from 'gatsby' 
 
 const LayoutWrapper = styled.div`
-  margin: 20px;
 `
 
 const Layout = ({ children }) => (
